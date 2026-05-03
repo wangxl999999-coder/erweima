@@ -1,0 +1,168 @@
+.qrcode-container {
+  background-color: #f8fafc;
+  border: 2rpx solid #e2e8f0;
+}
+
+.setting-group {
+  margin-bottom: 32rpx;
+}
+
+.setting-group:last-child {
+  margin-bottom: 0;
+}
+
+.setting-label {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+}
+
+.color-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+
+.color-item {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  position: relative;
+  border: 4rpx solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.color-item.active {
+  border-color: #3b82f6;
+  transform: scale(1.1);
+}
+
+.color-item .check {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 28rpx;
+  font-weight: bold;
+  text-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.3);
+}
+
+.style-options {
+  display: flex;
+  gap: 32rpx;
+}
+
+.style-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24rpx;
+  border: 2rpx solid #e2e8f0;
+  border-radius: 16rpx;
+  background-color: #f8fafc;
+  transition: all 0.3s ease;
+}
+
+.style-option.active {
+  border-color: #3b82f6;
+  background-color: #eff6ff;
+}
+
+.style-preview {
+  width: 64rpx;
+  height: 64rpx;
+  background-color: #333;
+  margin-bottom: 16rpx;
+}
+
+.style-preview.rect {
+  border-radius: 8rpx;
+}
+
+.style-preview.circle {
+  border-radius: 50%;
+}
+
+.style-text {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.style-option.active .style-text {
+  color: #3b82f6;
+  font-weight: 500;
+}
+
+.icon-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+
+.icon-item {
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2rpx solid #e2e8f0;
+  border-radius: 16rpx;
+  background-color: #f8fafc;
+  transition: all 0.3s ease;
+}
+
+.icon-item.active {
+  border-color: #3b82f6;
+  background-color: #eff6ff;
+}
+
+.icon-emoji {
+  font-size: 40rpx;
+}
+
+.upload-icon-section {
+  margin-top: 16rpx;
+}
+
+.current-icon-section {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  margin-top: 16rpx;
+}
+
+.current-icon {
+  width: 96rpx;
+  height: 96rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2rpx solid #e2e8f0;
+  border-radius: 16rpx;
+  background-color: #fff;
+}
+
+.icon-image {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 8rpx;
+}
+
+.remove-btn {
+  padding: 0 32rpx;
+  width: auto;
+}
+
+.remove-btn::after {
+  border: none;
+}
+
+.generate-btn {
+  margin-top: 40rpx;
+  margin-bottom: 60rpx;
+}
+
+.btn-primary::after, .btn-secondary::after, .btn-outline::after {
+  border: none;
+}

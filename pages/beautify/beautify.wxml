@@ -1,0 +1,136 @@
+<view class="container">
+  <view class="card">
+    <view class="section-title">实时预览</view>
+    <view class="qrcode-container">
+      <canvas
+        type="2d"
+        id="beautifyCanvas"
+        class="qrcode-image"
+        style="width: 400rpx; height: 400rpx;"
+      />
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">颜色设置</view>
+    
+    <view class="setting-group">
+      <view class="setting-label">信息点颜色</view>
+      <view class="color-picker">
+        <view
+          class="color-item {{config.dataColor === item ? 'active' : ''}}"
+          wx:for="{{colorPresets}}"
+          wx:key="*this"
+          style="background-color: {{item}};"
+          data-color="{{item}}"
+          bindtap="selectDataColor"
+        >
+          <view class="check" wx:if="{{config.dataColor === item}}">✓</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="setting-group">
+      <view class="setting-label">定位点颜色</view>
+      <view class="color-picker">
+        <view
+          class="color-item {{config.posColor === item ? 'active' : ''}}"
+          wx:for="{{colorPresets}}"
+          wx:key="*this"
+          style="background-color: {{item}};"
+          data-color="{{item}}"
+          bindtap="selectPosColor"
+        >
+          <view class="check" wx:if="{{config.posColor === item}}">✓</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">样式设置</view>
+    
+    <view class="setting-group">
+      <view class="setting-label">信息点样式</view>
+      <view class="style-options">
+        <view
+          class="style-option {{config.dataStyle === 'rect' ? 'active' : ''}}"
+          data-style="rect"
+          bindtap="selectDataStyle"
+        >
+          <view class="style-preview rect"></view>
+          <text class="style-text">矩形</text>
+        </view>
+        <view
+          class="style-option {{config.dataStyle === 'circle' ? 'active' : ''}}"
+          data-style="circle"
+          bindtap="selectDataStyle"
+        >
+          <view class="style-preview circle"></view>
+          <text class="style-text">圆形</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="setting-group">
+      <view class="setting-label">定位点样式</view>
+      <view class="style-options">
+        <view
+          class="style-option {{config.posStyle === 'rect' ? 'active' : ''}}"
+          data-style="rect"
+          bindtap="selectPosStyle"
+        >
+          <view class="style-preview rect"></view>
+          <text class="style-text">矩形</text>
+        </view>
+        <view
+          class="style-option {{config.posStyle === 'circle' ? 'active' : ''}}"
+          data-style="circle"
+          bindtap="selectPosStyle"
+        >
+          <view class="style-preview circle"></view>
+          <text class="style-text">圆形</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">图标设置</view>
+    
+    <view class="setting-group">
+      <view class="setting-label">默认图标</view>
+      <view class="icon-list">
+        <view
+          class="icon-item {{config.icon === item.icon ? 'active' : ''}}"
+          wx:for="{{defaultIcons}}"
+          wx:key="id"
+          data-icon="{{item.icon}}"
+          bindtap="selectDefaultIcon"
+        >
+          <text class="icon-emoji">{{item.icon}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="setting-group">
+      <view class="setting-label">自定义图标</view>
+      <view class="upload-icon-section">
+        <button class="btn-secondary" bindtap="uploadCustomIcon">上传图片</button>
+      </view>
+    </view>
+
+    <view class="setting-group" wx:if="{{config.icon}}">
+      <view class="setting-label">当前图标</view>
+      <view class="current-icon-section">
+        <view class="current-icon">
+          <text class="icon-emoji" wx:if="{{config.iconType !== 'image'}}">{{config.icon}}</text>
+          <image wx:else class="icon-image" src="{{config.icon}}" mode="aspectFill"></image>
+        </view>
+        <button class="btn-outline remove-btn" bindtap="removeIcon">移除图标</button>
+      </view>
+    </view>
+  </view>
+
+  <button class="btn-primary generate-btn" bindtap="goToResult">生成并下载</button>
+</view>

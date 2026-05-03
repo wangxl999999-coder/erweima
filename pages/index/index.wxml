@@ -1,0 +1,39 @@
+<view class="container">
+  <view class="card">
+    <view class="section-title">生成二维码</view>
+    <view class="input-section">
+      <textarea
+        class="content-input"
+        placeholder="请输入要生成二维码的内容"
+        value="{{content}}"
+        bindinput="onInputChange"
+        maxlength="500"
+        auto-height
+      />
+    </view>
+    <button class="btn-primary" bindtap="generateQRCode">生成二维码</button>
+  </view>
+
+  <view class="card">
+    <view class="section-title">上传二维码</view>
+    <view class="upload-section flex-center">
+      <button class="btn-secondary upload-btn" bindtap="uploadQRCode">
+        <text class="upload-icon">+</text>
+        <text>从相册选择或拍照</text>
+      </button>
+    </view>
+  </view>
+
+  <view class="card" wx:if="{{isGenerated}}">
+    <view class="section-title">二维码预览</view>
+    <view class="qrcode-container">
+      <canvas
+        type="2d"
+        id="qrcodeCanvas"
+        class="qrcode-image"
+        style="width: 400rpx; height: 400rpx;"
+      />
+    </view>
+    <button class="btn-primary" bindtap="goToBeautify">开始美化</button>
+  </view>
+</view>
