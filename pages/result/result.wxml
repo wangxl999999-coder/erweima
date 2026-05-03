@@ -1,0 +1,62 @@
+<view class="container">
+  <view class="card">
+    <view class="section-title">美化结果</view>
+    <view class="qrcode-container">
+      <canvas
+        type="2d"
+        id="resultCanvas"
+        class="qrcode-image"
+        style="width: 400rpx; height: 400rpx;"
+      />
+    </view>
+    
+    <view class="result-info">
+      <view class="info-item">
+        <text class="info-label">信息点颜色：</text>
+        <view class="color-preview" style="background-color: {{config.dataColor}};"></view>
+      </view>
+      <view class="info-item">
+        <text class="info-label">定位点颜色：</text>
+        <view class="color-preview" style="background-color: {{config.posColor}};"></view>
+      </view>
+      <view class="info-item">
+        <text class="info-label">信息点样式：</text>
+        <text class="info-value">{{config.dataStyle === 'circle' ? '圆形' : '矩形'}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">定位点样式：</text>
+        <text class="info-value">{{config.posStyle === 'circle' ? '圆形' : '矩形'}}</text>
+      </view>
+      <view class="info-item" wx:if="{{config.icon}}">
+        <text class="info-label">图标：</text>
+        <text class="info-value" wx:if="{{config.iconType !== 'image'}}">{{config.icon}}</text>
+        <text class="info-value" wx:else>自定义图片</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="action-buttons">
+    <button 
+      class="btn-primary download-btn {{isGenerating ? 'loading' : ''}}" 
+      bindtap="downloadQRCode"
+      loading="{{isGenerating}}"
+      disabled="{{isGenerating}}"
+    >
+      {{isGenerating ? '生成中...' : '保存到相册'}}
+    </button>
+    
+    <view class="secondary-buttons">
+      <button class="btn-outline" bindtap="reEdit">重新编辑</button>
+      <button class="btn-outline" bindtap="goHome">返回首页</button>
+    </view>
+  </view>
+
+  <view class="tips">
+    <view class="tips-title">使用提示</view>
+    <view class="tips-content">
+      <text>• 点击"保存到相册"可将美化后的二维码保存到手机</text>
+      <text>• 如果保存失败，请检查是否已授权相册访问权限</text>
+      <text>• 建议使用清晰的二维码进行美化，以获得最佳效果</text>
+    </view>
+  </view>
+</view>

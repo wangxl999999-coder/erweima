@@ -1,0 +1,93 @@
+.qrcode-container {
+  background-color: #f8fafc;
+  border: 2rpx solid #e2e8f0;
+}
+
+.result-info {
+  margin-top: 30rpx;
+  padding-top: 30rpx;
+  border-top: 2rpx solid #f0f0f0;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.info-item:last-child {
+  margin-bottom: 0;
+}
+
+.info-label {
+  font-size: 28rpx;
+  color: #666;
+  width: 200rpx;
+}
+
+.info-value {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.color-preview {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 8rpx;
+  border: 2rpx solid #e2e8f0;
+}
+
+.action-buttons {
+  margin-top: 40rpx;
+}
+
+.download-btn {
+  width: 100%;
+  margin-bottom: 24rpx;
+}
+
+.download-btn.loading {
+  opacity: 0.7;
+}
+
+.secondary-buttons {
+  display: flex;
+  gap: 24rpx;
+}
+
+.secondary-buttons .btn-outline {
+  flex: 1;
+}
+
+.tips {
+  margin-top: 40rpx;
+  margin-bottom: 60rpx;
+  padding: 30rpx;
+  background-color: #f0f9ff;
+  border-radius: 16rpx;
+  border-left: 8rpx solid #3b82f6;
+}
+
+.tips-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1e40af;
+  margin-bottom: 20rpx;
+}
+
+.tips-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.tips-content text {
+  font-size: 26rpx;
+  color: #3b82f6;
+  line-height: 1.6;
+}
+
+.btn-primary::after, .btn-outline::after {
+  border: none;
+}
