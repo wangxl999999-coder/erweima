@@ -964,13 +964,74 @@ QRBitBuffer.prototype = {
 	}
 };
 
+function getTypeNumberForData(data, errorCorrectionLevel) {
+	var dataLength = data.length;
+	var mode = QRMode.MODE_8BIT_BYTE;
+	
+	for (var typeNumber = 1; typeNumber <= 10; typeNumber++) {
+		try {
+			var rsBlocks = QRRSBlock.getRSBlocks(typeNumber, errorCorrectionLevel);
+			
+			var totalDataCount = 0;
+			for (var i = 0; i < rsBlocks.length; i++) {
+				totalDataCount += rsBlocks[i].dataCount;
+			}
+			
+			var lengthBits = QRUtil.getLengthInBits(mode, typeNumber);
+			var totalBitsNeeded = 4 + lengthBits + (dataLength * 8);
+			
+			var totalBitsAvailable = totalDataCount * 8;
+			
+			if (totalBitsNeeded <= totalBitsAvailable) {
+				return typeNumber;
+			}
+		} catch (e) {
+			continue;
+		}
+	}
+	
+	return 10;
+}
+
+function generateQRCodeWithType(data, size, typeNumber, errorCorrectionLevel) {
+	try {
+		var qr = new QRCode(typeNumber, errorCorrectionLevel);
+		qr.addData(data);
+		qr.make();
+		return createCanvasData(qr, size);
+	} catch (e) {
+		console.error('QRCode generation failed for typeNumber ' + typeNumber + ': ' + e.message);
+		throw e;
+	}
+}
+
 var qrcode = function(data, size) {
-	var typeNumber = 4;
 	var errorCorrectionLevel = QRErrorCorrectLevel.H;
-	var qr = new QRCode(typeNumber, errorCorrectionLevel);
-	qr.addData(data);
-	qr.make();
-	return createCanvasData(qr, size);
+	
+	console.log('Generating QRCode for data length: ' + data.length);
+	
+	var typeNumber = getTypeNumberForData(data, errorCorrectionLevel);
+	
+	console.log('Using typeNumber: ' + typeNumber);
+	
+	try {
+		return generateQRCodeWithType(data, size, typeNumber, errorCorrectionLevel);
+	} catch (e) {
+		console.log('Failed with typeNumber ' + typeNumber + ', trying higher versions...');
+		
+		for (var t = typeNumber + 1; t <= 10; t++) {
+			try {
+				var result = generateQRCodeWithType(data, size, t, errorCorrectionLevel);
+				console.log('Success with typeNumber: ' + t);
+				return result;
+			} catch (e2) {
+				console.log('Failed with typeNumber ' + t + ': ' + e2.message);
+				continue;
+			}
+		}
+		
+		throw new Error('Failed to generate QRCode even with max typeNumber. Data may be too long.');
+	}
 }
 
 function createCanvasData(qr, size) {

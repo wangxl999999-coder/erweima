@@ -16,11 +16,17 @@
 
   <view class="card">
     <view class="section-title">上传二维码</view>
+    <view class="upload-tips">
+      <text class="tips-text">点击下方按钮，可选择从相册识别二维码或拍照识别</text>
+    </view>
     <view class="upload-section flex-center">
-      <button class="btn-secondary upload-btn" bindtap="uploadQRCode">
-        <text class="upload-icon">+</text>
-        <text>从相册选择或拍照</text>
+      <button class="btn-secondary upload-btn" bindtap="showUploadOptions">
+        <text class="upload-icon">📷</text>
+        <text>识别二维码</text>
       </button>
+    </view>
+    <view class="upload-hint">
+      <text class="hint-text">提示：在识别界面点击右上角菜单可选择相册图片</text>
     </view>
   </view>
 
